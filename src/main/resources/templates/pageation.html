@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <nav aria-label="Page navigation" th:if="${pagedto.totalPage > 1}" th:fragment="pageation">
+        <ul class="pagination">
+            <li class="page-item" th:if="${pagedto.showFirstPage}">
+                <a class="page-link" th:href="@{${pagedto.orgin}(page=1)}">首页</a>
+            </li>
+            <li class="page-item" th:if="${pagedto.showPrevious}">
+                <a class="page-link" th:href="@{${pagedto.orgin}(page=${pagedto.page}-1)}">上一页</a>
+            </li>
+            <li th:class="${index == pagedto.page ? 'active page-item': 'page-item'}" th:each="index:${pagedto.pages}">
+                <a class="page-link" th:href="@{${pagedto.orgin}(page=${index})}">
+                    <span th:text="${index}"></span>
+                </a>
+            </li>
+            <li class="page-item" th:if="${pagedto.showNext}">
+                <a class="page-link" th:href="@{${pagedto.orgin}(page=${pagedto.page}+1)}">下一页</a>
+            </li>
+            <li class="page-item" th:if="${pagedto.showEndPage}">
+                <a class="page-link" th:href="@{${pagedto.orgin}(page=${pagedto.totalPage})}">末页</a>
+            </li>
+        </ul>
+    </nav>
+</html>
